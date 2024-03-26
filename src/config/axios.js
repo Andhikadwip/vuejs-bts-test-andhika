@@ -7,12 +7,8 @@ axios.interceptors.request.use(function (config) {
       var users = JSON.parse(localStorage.getItem("users"))
       if(users.token) {
         token = users.token
-      } else {
-        token = localStorage.getItem("token_client") ? localStorage.getItem("token_client") : null
       }
-    } else if (localStorage.getItem("token_client")) {
-      token = localStorage.getItem("token_client")
-    }
+    } 
 
     if(token != null) {
       config.headers.Authorization = `Bearer ${token}`;
