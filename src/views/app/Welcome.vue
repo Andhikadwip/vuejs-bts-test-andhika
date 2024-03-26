@@ -19,6 +19,13 @@
                     <task-item v-for="(task, index) in tasks" @remove="removeTask(task.id)" class="mb-3" @complete="completeTask(index)" :task="task" :key="index"
                     ></task-item>
                 </transition-group>
+
+                <div class="d-flex justify-content-end">
+                    <vs-button relief class="d-flex flex-column align-items-center" danger :active="active_add == 1" @click="logOut">
+                        <i class='bx bx-power-off'></i>
+                        Keluar
+                    </vs-button>
+                </div>
             </section>
         </div>
 </template>
@@ -60,6 +67,25 @@ export default{
         this.getList();
     },
     methods: {
+        logOut(){
+            Swal.fire({
+                title: "Apakah kamu yakin?",
+                text: "ingin keluar dari aplikasi",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Keluar!",
+                cancelButtonText: "Tidak!"
+                }).then((result) => {
+                if (result.isConfirmed) {
+
+                    localStorage.removeItem('users')
+                    this.$router.push("/login")
+
+                }
+            });
+        },
         addTask() {
             if (this.newTask) {
                 // this.tasks.push({

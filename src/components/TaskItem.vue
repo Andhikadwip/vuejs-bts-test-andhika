@@ -2,7 +2,7 @@
     <li class="tasks__item">
         <div class="tasks__item__toggle d-flex justify-content-between align-items-center" data-bs-toggle="collapse" :href="'#collapse-task'+task.id" role="button" aria-expanded="false" :aria-controls="'collapse-task'+task.id">{{ task.name }} 
             <vs-button shadow flat danger :active="active_action == 0" @click="$emit('remove')">
-                <i class='bx bxs-trash' ></i> Hapus
+                <i class='bx bxs-trash' ></i>
             </vs-button>
         </div>
         <div class="collapse" :id="'collapse-task'+task.id">
