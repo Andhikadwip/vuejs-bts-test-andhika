@@ -143,8 +143,8 @@ export default{
 
 
 .tasks__item{
-margin-bottomL: .5em;
-position: relative;
+    margin-bottom: .5em;
+    position: relative;
 }
 
 .tasks__item__toggle{
