@@ -13,7 +13,7 @@
             </div>
             <div class="card card-body text-start">
                 <transition-group name="fade" tag="ul" class="tasks__list p-0">
-                    <task-item-child v-for="(task, idx) in listItemTask" @remove:item="removeTask(task.id)" @complete:item="completeTask(task.id)" class="mb-3" :listItemTask="task" :key="idx"
+                    <task-item-child v-for="task in listItemTask" @remove:item="removeTask(task.id)" @complete:item="completeTask(task.id)" class="mb-3" :listItemTask="task" :key="task.id"
                     ></task-item-child>
                 </transition-group>
             </div>

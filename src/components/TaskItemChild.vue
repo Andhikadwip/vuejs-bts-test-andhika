@@ -15,61 +15,17 @@
 </template>
 
 <script>
-import { saveItemChecklist } from "@/service/checklist/checklist.service.js"
-import {AlertUtils} from "@/mixins/AlertUtils"
-
 export default{
     props: ['listItemTask'],
-    mixins: [AlertUtils],
     data(){
         return{
             active_action: 0,
-            newTask: '',
-            active_add: 0,
-            renamed_task: ''
         }
     },
-    computed: {
-    
-    },
-    mounted(){
-    },
-    watch: {
-        listItemTask(){
-            this.getList()
-        }
-    },
-    methods: {
-        addTask() {
-            if (this.newTask) {
-
-                let payload = {
-                    itemName: this.newTask
-                }
-
-                saveItemChecklist(this.task.id, payload).then((res) =>{
-                    if(res.data.statusCode){
-                        this.getList();
-                        this.newTask = '';
-                        this.alertDefault('top-center', 'Berhasil!', "To do item Berhasil Di save!", 'success');
-                    }
-                }).catch(err=>{
-                    console.log(err)
-                    this.alertDefault('top-center', 'Error!', "To do item Gagal Di save!", 'danger');
-                })
-            }
-            this.active_add = 1;
-        },
-    }
 }
 </script>
 
 <style scoped>
- 
-
-.tasks__list{
-clear: both;
-}
 
 .tasks__item{
     margin-bottom: .5em;
@@ -92,14 +48,14 @@ clear: both;
 }
 
 .tasks__item__toggle--completed{
-text-decoration: line-through;
-background-color: rgba(116, 235, 52, .15);
-border-color: rgba(116, 235, 52, .2);
+    text-decoration: line-through;
+    background-color: rgba(116, 235, 52, .15);
+    border-color: rgba(116, 235, 52, .2);
 }
 
 
 .tasks__item__toggle--completed:hover{
-background-color: rgba(116, 235, 52, .25);
-border-color: rgba(116, 235, 52, .3);
+    background-color: rgba(116, 235, 52, .25);
+    border-color: rgba(116, 235, 52, .3);
 }
 </style>

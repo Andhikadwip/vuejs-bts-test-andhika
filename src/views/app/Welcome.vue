@@ -16,7 +16,7 @@
 
                 
                 <transition-group name="fade" tag="ul" class="tasks__list p-0">
-                    <task-item v-for="(task, index) in tasks" @remove="removeTask(task.id)" class="mb-3" @complete="completeTask(index)" :task="task" :key="index"
+                    <task-item v-for="task in tasks" @remove="removeTask(task.id)" class="mb-3" :task="task" :key="task.id"
                     ></task-item>
                 </transition-group>
 
@@ -145,21 +145,6 @@ export default{
 
                 }
             });
-        },
-        clearCompleted() {
-            this.tasks = this.tasks.filter(this.inProgress);
-            this.active_action = 0;
-        },
-        clearAll() {
-            this.tasks = [];
-            this.active_action = 1;
-        },
-        
-        inProgress(task) {
-            return !this.isCompleted(task);
-        },
-        isCompleted(task) {
-            return task.completed;
         },
         getList(){
             checklistGetList().then((res)=>{
