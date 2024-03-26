@@ -13,7 +13,7 @@
             </div>
             <div class="card card-body text-start">
                 <transition-group name="fade" tag="ul" class="tasks__list p-0">
-                    <task-item-child v-for="task in listItemTask" @remove:item="removeTask(task.id)" @complete:item="completeTask(task.id)" class="mb-3" :listItemTask="task" :key="task.id"
+                    <task-item-child v-for="task in listItemTask" @remove:item="removeTask(task.id)" @complete:item="completeTask(task.id)" class="mb-3" :listItemTask="task" :key="task.id" @rename:item="(val) => renameItem(task.id, val)"
                     ></task-item-child>
                 </transition-group>
             </div>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { findChecklistByItem, saveItemChecklist, deleteItemChecklist, changeStatusItemChecklist } from "@/service/checklist/checklist.service.js"
+import { findChecklistByItem, saveItemChecklist, deleteItemChecklist, changeStatusItemChecklist, renameItemChecklist } from "@/service/checklist/checklist.service.js"
 import TaskItemChild from "@/components/TaskItemChild.vue";
 import {AlertUtils} from "@/mixins/AlertUtils"
 import Swal from 'sweetalert2'
@@ -48,6 +48,23 @@ export default{
         this.getList();
     },
     methods: {
+        renameItem(id, item){
+            let payload = {
+                itemName: item
+            }
+            renameItemChecklist(this.task.id, id, payload).then((res) =>{
+                if(res.status == 200){
+
+                    this.alertDefault('top-center', 'Berhasil!', "Item To do Berhasil Di Rename!", 'success');
+                    this.getList();
+                }else{
+                    this.alertDefault('top-center', 'Error!', "Item To do Gagal Di Rename!", 'error');
+                }
+            }).catch((err) =>{
+                console.log(err);
+                this.alertDefault('top-center', 'Error!', "Item To do Gagal Di Rename!", 'error');
+            })
+        },
         completeTask(id){
             Swal.fire({
                 title: "Apakah kamu yakin?",

@@ -1,7 +1,15 @@
 <template>
     <li class="tasks__item">
-        <div class="tasks__item__toggle d-flex justify-content-between align-items-center" :class="{'tasks__item__toggle--completed': listItemTask.itemCompletionStatus}" >{{listItemTask.name}}
-
+        <div class="tasks__item__toggle d-flex justify-content-between align-items-center" :class="{'tasks__item__toggle--completed': listItemTask.itemCompletionStatus}" >
+            <div class="d-flex" v-if="!listItemTask.itemCompletionStatus">
+                <vs-input v-model="listItemTask.name" placeholder="Rename item to do"/>
+                <vs-button shadow flat success :active="active_action == 0" v-if="!listItemTask.itemCompletionStatus" @click="$emit('rename:item', listItemTask.name)">
+                    <i class='bx bxs-edit-alt'></i> Rename
+                </vs-button>
+            </div>
+            <span v-else>
+                {{ listItemTask.name }}
+            </span>
             <div class="d-flex justify-content-end align-items-center">
                 <vs-button shadow flat success :active="active_action == 0" v-if="!listItemTask.itemCompletionStatus" @click="$emit('complete:item')">
                     <i class='bx bx-check'></i> Complete

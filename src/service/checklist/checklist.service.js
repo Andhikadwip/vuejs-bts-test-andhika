@@ -23,3 +23,6 @@ export async function deleteItemChecklist(id, id_item) {
 export async function changeStatusItemChecklist(id, id_item) {
     return axios.put(base_url + ApiRoute.checklist+id+"/item/"+id_item);
 }
+export async function renameItemChecklist(id, id_item, data) {
+    return axios.put(base_url + ApiRoute.checklist+id+"/item/rename/"+id_item, data);
+}
