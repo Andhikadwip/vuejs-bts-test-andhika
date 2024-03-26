@@ -109,8 +109,12 @@ export default{
                         }
 
                     }).catch(err=>{
-                        console.log(err)
-                        this.alertDefault('top-center', 'Error!', "To do Gagal Di hapus!", 'error');
+                        if(err.response.status == 500){
+                            this.alertDefault('top-center', 'Error!', "Internal Server Error!", 'danger');
+                        }else{
+
+                            this.alertDefault('top-center', 'Error!', "To do Gagal Di hapus!", 'danger');
+                        }
                     })
 
                 }
@@ -175,7 +179,7 @@ export default{
 }
 
 .tasks__item{
-    margin-bottomL: .5em;
+    margin-bottom: .5em;
     position: relative;
 }
 
