@@ -66,33 +66,14 @@ export default{
 
 <style scoped>
  
- .fade-enter-active, .fade-leave-active{
-
-transition: opacity .5s;
-}
-
-.fade-enter, .fade-leave-active{
-
-opacity: 0;
-}
-
-.tasks{
-width: 100%;
-max-width: 45rem;
-padding: 1em;
-margin: 1em auto;
-overflow: auto;
-background-color: white;
-box-shadow: 0px .25rem 1rem rgba(black, .25);
-}
 
 .tasks__list{
 clear: both;
 }
 
 .tasks__item{
-margin-bottomL: .5em;
-position: relative;
+    margin-bottom: .5em;
+    position: relative;
 }
 
 .tasks__item__toggle{
@@ -120,18 +101,5 @@ border-color: rgba(116, 235, 52, .2);
 .tasks__item__toggle--completed:hover{
 background-color: rgba(116, 235, 52, .25);
 border-color: rgba(116, 235, 52, .3);
-}
-
-
-.tasks__item__remove{
-position: absolute;
-height: 100%;
-top: 50%;
-right: 0;
-transform: translateY(-50%);
-}
-
-.tasks__item__remove i{
-vertical-align: middle;
 }
 </style>
