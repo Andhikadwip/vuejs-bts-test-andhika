@@ -75,7 +75,7 @@ export default{
     watch: {
         registerError(value){
             if(value.statusCode == 2000){
-                this.alertDefault('top-center', 'Login Berhasil!', "Halaman akan di arahkan ke login dalam 3 detik.", 'dark');
+                this.alertDefault('top-center', 'Register Berhasil!', "Halaman akan di arahkan ke login dalam 3 detik.", 'dark');
                 setTimeout(() => {
                     this.$router.push("/login")
                 }, 3000);
