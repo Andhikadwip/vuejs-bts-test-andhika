@@ -1,0 +1,1 @@
+export var base_url = "http://94.74.86.174:8080/"

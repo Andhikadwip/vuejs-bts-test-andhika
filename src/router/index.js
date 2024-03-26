@@ -1,22 +1,52 @@
 import Vue from 'vue'
+import checkBearer from '@/config/checkBearer.js';
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/login',
+    redirect: 'login',
+    component: () => import('@/App.vue'),
+    children: [
+      {
+        path: '/login',
+        name: 'SignIn',
+        component: () => import(/* webpackChunkName: "sign-in" */'@/views/auth/SignIn.vue')
+      },
+      {
+        path: '/sign-up',
+        name: 'SignUp',
+        component: () => import(/* webpackChunkName: "sign-up" */'@/views/auth/SignUp.vue')
+      },
+    ]
   },
+
+
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/',
+    redirect: '/welcome',
+    beforeEnter: checkBearer,
+    component: () => import(/* webpackChunkName: "about" */ '@/views/app/Welcome.vue'),
+    children: [
+      {
+        path: '/welcome',
+        name: 'Welcome',
+        component: {
+          render(c) {
+            return c('router-view')
+          }
+        },
+        children: [
+          {
+            path: '/welcome',
+            name: 'Welcome',
+            component: () => import(/* webpackChunkName: "Master Barang" */'@/views/app/Welcome.vue')
+          },
+        ],
+      }
+    ]
   }
 ]
 
